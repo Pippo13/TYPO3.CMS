@@ -675,4 +675,70 @@ $(function() {
 			TYPO3.Install.Scrolling.handleButtonScrolling();
 		}, 50);
 	});
+
+
+
+	TYPO3.Install.upgradeAnalysis.initialize();
 });
+
+TYPO3.Install.upgradeAnalysis = {
+	filterAffection: function () {
+		this.callAction('upgradeAnalysis', 'filterAffection');
+	},
+
+	listDocumentation: function () {
+		this.callAction('upgradeAnalysis');
+	},
+
+	/**
+	 * Generic method to call actions from the queue
+	 *
+	 * @param actionName Name of the action to be called
+	 * @param type Update type (optional)
+	 */
+	callAction: function (actionName, type) {
+		var self = this;
+		var data = {
+			install: {
+				controller: 'ajax',
+				action: actionName
+			}
+		};
+		if (type !== undefined) {
+			data.install["type"] = type;
+		}
+		$.ajax({
+				   url: location.href,
+				   data: data,
+				   cache: false,
+				   success: function (result) {
+					   $('#upgradeAnalysis_output').html(result);
+					//   var canContinue = self.handleResult(result, self.actionQueue[actionName].finishMessage);
+					//   if (canContinue === true && (self.actionQueue[actionName].nextActionName !== undefined)) {
+					//	   self.callAction(self.actionQueue[actionName].nextActionName, type);
+					//   }
+				   },
+				   error: function (result) {
+					   console.log('error: ' + result);
+					//   self.handleResult(result);
+				   }
+			   });
+	},
+
+	// source: https://github.com/wchaering/tagsort/
+
+	initialize: function () {
+		$('#upgradeAnalysis_FilterAffection').click(function () {
+			TYPO3.Install.upgradeAnalysis.filterAffection();
+		});
+
+		$('#upgradeAnalysis_listDocumentation').click(function () {
+			TYPO3.Install.upgradeAnalysis.listDocumentation();
+		});
+
+		$('.tagsort-tags-container').tagSort({
+												 items: '.upgrade_analysis_item_to_filter',
+												 sortType: 'inclusive'
+											 });
+	}
+};

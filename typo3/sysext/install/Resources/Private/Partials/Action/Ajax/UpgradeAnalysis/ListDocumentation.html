@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers">
+<head>
+	<title>Partials: ListDocumentation</title>
+</head>
+<body>
+<f:section name="Main">
+
+		<f:for each="{files}" as="versionArray" key="version">
+			<h2>{version}</h2>
+			<ul>
+			<f:for each="{versionArray}" as="fileArray" key="issueNumber">
+				<li class="upgrade_analysis_item_to_filter" data-item-tags="{fileArray.tagList}">
+						<a href="{fileArray.link}" alt="{fileArray.headline}" target="_blank">{fileArray.headline}</a>
+				</li>
+			</f:for>
+				</ul>
+		</f:for>
+</f:section>
+</body>
+</html>

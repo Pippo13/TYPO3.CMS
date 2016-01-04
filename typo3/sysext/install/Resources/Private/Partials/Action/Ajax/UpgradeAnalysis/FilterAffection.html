@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	  xmlns:f="http://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers">
+<head>
+	<title>Partials: FilterAffection</title>
+</head>
+<body>
+<f:section name="Main">
+	<ul>
+		<f:for each="{files}" as="versionArray" key="version">
+			<h2>{version}</h2>
+			<f:for each="{versionArray}" as="fileArray" key="issueNumber">
+				<li>
+					<b><a href="{fileArray.link}" alt="{fileArray.headline}" target="_blank">{fileArray.headline}</a></b><br/>
+					<f:for each="{finderClasses}" as="finderClass" key="finderClassKey">
+						<f:if condition="{issueNumber} == {finderClassKey}">
+							<span>Finder available</span>
+
+							<f:for each="{matches}" as="match" key="matchIssueNumber">
+								<f:if condition="{issueNumber} == {matchIssueNumber}">
+									<f:then>
+										<ul>
+											<f:for each="{match}" as="matchItem">
+												<li>{matchItem.file}:
+													<ul>
+														<f:for each="{matchItem}"
+															   as="matchItemEntry">
+															<f:if
+																condition="{matchItemEntry.line}">
+																<li>Line: {matchItemEntry.line}
+																	{matchItemEntry.content}
+																</li>
+															</f:if>
+														</f:for>
+													</ul>
+												</li>
+											</f:for>
+										</ul>
+									</f:then>
+									<f:else>
+										<i>Instance is not affected</i>
+									</f:else>
+								</f:if>
+							</f:for>
+						</f:if>
+					</f:for>
+				</li>
+			</f:for>
+		</f:for>
+	</ul>
+</f:section>
+</body>
+</html>

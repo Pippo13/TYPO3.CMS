@@ -68,3 +68,34 @@ Like other documentation, changelog files are done in ReST, see `TYPO3 wiki ReST
 - Types "Deprecation" and "Breaking" contain a "Migration" section to describe best practices on how to cope with a specific change.
 
 .. _TYPO3 wiki ReST syntax: http://wiki.typo3.org/ReST_Syntax
+
+Tagging
+=======
+
+To provide the possibility to filter RST files by topics, it is mandatory to equip every RST file with at least two tags. As a rule of thumb a file should have no more than five tags. Please limit yourself to the list provided below. If you are in dearly need to introduce a new tag, you must also add it to the list (and explain it) in this file as a reference for everyone.
+
+List of all possible tags:
+
+- TypoScript - Changes that imply or introduce alterations to some TypoScript settings or modify the behavior of TypoScript itself.
+
+- Fluid - Changes that alter behavior of Fluid like introducing new tags or modifying already established ones.
+
+- Ext:xyz - Changes on extension xyz. Please refer to this tag only when changing system extensions.
+
+- TCA - Every change related to TCA.
+
+- Database - Changes that modify behavior of the database abstraction or introduces or removes new fields.
+
+- LocalConfiguration - Changes that affect the LocalConfiguration.php or the subordinated AdditionalConfiguration.php
+
+- JavaScript - Modifying or introducing JavaScript.
+
+- PHP-API - Implementations of mandatory changes of the PHP-API.
+
+- Page TS - Changes or modifications on the Page TS or the behavior of this field.
+
+- User TS - Changes of modifications on the User TS or the behavior of this field.
+
+- Frontend - Changes that will affect the behavior or rendering of the TYPO3 Frontend.
+
+- Backend - Changes that will affect the behavior or rendering of the TYPO3 Backend.

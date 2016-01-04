@@ -1,0 +1,10 @@
+{namespace i=TYPO3\CMS\Install\ViewHelpers}
+
+<f:layout name="ToolAuthenticated"/>
+
+<f:section name="Content">
+	<h1>Upgrade Analysis</h1>
+	<div id="upgradeAnalysis_output" class="tagsort-tags-container"></div>
+		<f:render partial="Action/Ajax/UpgradeAnalysis/ListDocumentation" section="Main" arguments="{_all}" />
+
+</f:section>
